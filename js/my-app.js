@@ -15,22 +15,11 @@ var mainView = myApp.addView('.view-main', {
 $$(document).on('deviceready', function() {
     console.log("Device is ready!");
     
-var now                  = new Date().getTime(),
-    _60_seconds_from_now = new Date(now + 60*1000);
-
-wcordova.plugins.notification.local.schedule({
-    id: 1,
-    title: "Production Jour fixe",
-    text: "Duration 1h",
-    firstAt: _60_seconds_from_now,
-    every: "week",
-    sound: "file://sounds/reminder.mp3",
-    icon: "http://icons.com/?cal_id=1",
-    data: { meetingId:"123#fg8" }
-});
- 
-cordova.plugins.notification.local.on("click", function (notification) {
-    joinMeeting(notification.data.meetingId);
+cordova.plugins.notification.local.schedule({
+    title: "New Message",
+    message: "Hi, are you ready? We are waiting.",
+    sound: "file://sounds/message.mp3",
+    icon: "http://my.domain.de/avatar/user#id=123"
 });
  
 });
