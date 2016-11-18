@@ -63,7 +63,6 @@ function checkConnection() {
 
            cordova.plugins.notification.local.schedule({
     text: "Wake up!",
-    sound: "file://sounds/alert.caf",
-    every: 1 // every 30 minutes
+    sound: "file://sounds/alert.caf"
 });
         }
