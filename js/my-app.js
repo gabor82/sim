@@ -15,24 +15,38 @@ var mainView = myApp.addView('.view-main', {
 $$(document).on('deviceready', function() {
     console.log("Device is ready!");
 
- var Fetcher = window.plugins.backgroundFetch;
 
-    // Your background-fetch handler.
-    var fetchCallback = function() {
-        console.log('BackgroundFetch initiated');
 
-        // perform your ajax request to server here
-        $.get({
-            url: '/heartbeat.json',
-            callback: function(response) {
-                // process your response and whatnot.
 
-                window.plugin.notification.local.add({ message: 'Just fetched!' });  //local notification
-                Fetcher.finish();   // <-- N.B. You MUST called #finish so that native-side can signal completion of the background-thread to the os.
-            }
-        });
+ cordova.plugins.backgroundMode.setDefaults({ text:'Doing heavy tasks.'});
+    // Enable background mode 
+    cordova.plugins.backgroundMode.enable();
+ 
+    // Called when background mode has been activated 
+    cordova.plugins.backgroundMode.onactivate = function () {
+        setTimeout(function () {
+            // Modify the currently displayed notification 
+            cordova.plugins.backgroundMode.configure({
+                text:'Running in background for more than 5s now.'
+            });
+
+cordova.plugins.notification.local.schedule({
+    id: 1,
+    title: "Production Jour fixe",
+    text: "Duration 1h",
+    firstAt: monday_9_am,
+    every: "week",
+    sound: "file://sounds/reminder.mp3",
+    icon: "http://icons.com/?cal_id=1",
+    data: { meetingId:"123#fg8" }
+});
+ 
+cordova.plugins.notification.local.on("click", function (notification) {
+    joinMeeting(notification.data.meetingId);
+});
+
+        }, 5000);
     }
-    Fetcher.configure(fetchCallback);
     
 });
 
