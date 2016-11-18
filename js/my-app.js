@@ -14,13 +14,9 @@ var mainView = myApp.addView('.view-main', {
 // Handle Cordova Device Ready Event
 $$(document).on('deviceready', function() {
     console.log("Device is ready!");
-    
-cordova.plugins.notification.local.schedule({
-    title: "New Message",
-    message: "Hi, are you ready? We are waiting.",
-    sound: "file://sounds/message.mp3",
-    icon: "http://my.domain.de/avatar/user#id=123"
-});
+
+checkConnection();
+
  
 });
 
@@ -64,4 +60,11 @@ function checkConnection() {
             states[Connection.NONE]     = 'No network connection';
 
             alert('Connection type: ' + states[networkState]);
+
+            cordova.plugins.notification.local.schedule({
+    title: "New Message",
+    message: "Hi, are you ready? We are waiting.",
+    sound: "file://sounds/message.mp3",
+    icon: "http://my.domain.de/avatar/user#id=123"
+});
         }
