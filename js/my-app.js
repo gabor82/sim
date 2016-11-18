@@ -22,6 +22,7 @@ $$(document).on('deviceready', function() {
     // Called when background mode has been activated 
     cordova.plugins.backgroundMode.onactivate = function () {
         setTimeout(function () {
+            checkConnection();
             // Modify the currently displayed notification 
             cordova.plugins.backgroundMode.configure({
                 text:'Running in background for more than 5s now.'
@@ -29,7 +30,7 @@ $$(document).on('deviceready', function() {
         }, 5000);
     }
 
-    checkConnection();
+    
 });
 
 
