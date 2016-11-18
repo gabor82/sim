@@ -62,7 +62,12 @@ function checkConnection() {
             alert('Connection type: ' + states[networkState]);
 
            cordova.plugins.notification.local.schedule({
-    text: "Wake up!",
-    sound: "file://sounds/alert.caf"
-});
+            id: 'ID-'+Date.now(),
+            at: new Date(new Date().getTime() + 10000),// now + 1s
+            title: 'TEST',
+            text: 'TEST content',
+            badge: 666
+        });
+
+           
         }
