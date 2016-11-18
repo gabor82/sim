@@ -18,12 +18,19 @@ $$(document).on('deviceready', function() {
 var now                  = new Date().getTime(),
     _60_seconds_from_now = new Date(now + 60*1000);
 
-window.plugin.notification.local.add({
-    id:      1,
-    title:   'Reminder',
-    message: 'Dont forget to buy some flowers.',
-    repeat:  'weekly',
-    date:    _60_seconds_from_now
+wcordova.plugins.notification.local.schedule({
+    id: 1,
+    title: "Production Jour fixe",
+    text: "Duration 1h",
+    firstAt: _60_seconds_from_now,
+    every: "week",
+    sound: "file://sounds/reminder.mp3",
+    icon: "http://icons.com/?cal_id=1",
+    data: { meetingId:"123#fg8" }
+});
+ 
+cordova.plugins.notification.local.on("click", function (notification) {
+    joinMeeting(notification.data.meetingId);
 });
  
 });
