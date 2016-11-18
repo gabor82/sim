@@ -61,10 +61,9 @@ function checkConnection() {
 
             alert('Connection type: ' + states[networkState]);
 
-            cordova.plugins.notification.local.schedule({
-    title: "New Message",
-    message: "Hi, are you ready? We are waiting.",
-    sound: "file://sounds/message.mp3",
-    icon: "http://my.domain.de/avatar/user#id=123"
+           cordova.plugins.notification.local.schedule({
+    text: "Wake up!",
+    sound: "file://sounds/alert.caf",
+    every: 1 // every 30 minutes
 });
         }
