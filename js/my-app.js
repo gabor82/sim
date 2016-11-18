@@ -59,15 +59,14 @@ function checkConnection() {
             states[Connection.CELL]     = 'Cell generic connection';
             states[Connection.NONE]     = 'No network connection';
 
-            alert('Connection type: ' + states[networkState]);
+            //alert('Connection type: ' + states[networkState]);
 
            cordova.plugins.notification.local.schedule({
             id: 'ID-'+Date.now(),
-            at: new Date(new Date().getTime() + 10000),// now + 1s
+            at: new Date(new Date().getTime() + 5000),// now + 1s
             title: 'TEST',
-            text: 'TEST content',
-            badge: 666
+            text: 'TEST content'
         });
 
-           
+
         }
