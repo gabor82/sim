@@ -16,20 +16,6 @@ $$(document).on('deviceready', function() {
     console.log("Device is ready!");
 
 
-
-
- cordova.plugins.backgroundMode.setDefaults({ text:'Doing heavy tasks.'});
-    // Enable background mode 
-    cordova.plugins.backgroundMode.enable();
- 
-    // Called when background mode has been activated 
-    cordova.plugins.backgroundMode.onactivate = function () {
-        setTimeout(function () {
-            // Modify the currently displayed notification 
-            cordova.plugins.backgroundMode.configure({
-                text:'Running in background for more than 5s now.'
-            });
-
 cordova.plugins.notification.local.schedule({
     id: 1,
     title: "Production Jour fixe",
@@ -45,9 +31,7 @@ cordova.plugins.notification.local.on("click", function (notification) {
     joinMeeting(notification.data.meetingId);
 });
 
-        }, 5000);
-    }
-    
+ 
 });
 
 
