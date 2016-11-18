@@ -15,21 +15,24 @@ var mainView = myApp.addView('.view-main', {
 $$(document).on('deviceready', function() {
     console.log("Device is ready!");
 
- cordova.plugins.backgroundMode.setDefaults({ text:'Doing heavy tasks.'});
-    // Enable background mode 
-    cordova.plugins.backgroundMode.enable();
- 
-    // Called when background mode has been activated 
-    cordova.plugins.backgroundMode.onactivate = function () {
-        setTimeout(function () {
-            checkConnection();
-            // Modify the currently displayed notification 
-            cordova.plugins.backgroundMode.configure({
-                text:'Running in background for more than 5s now.'
-            });
-        }, 5000);
-    }
+ var Fetcher = window.plugins.backgroundFetch;
 
+    // Your background-fetch handler.
+    var fetchCallback = function() {
+        console.log('BackgroundFetch initiated');
+
+        // perform your ajax request to server here
+        $.get({
+            url: '/heartbeat.json',
+            callback: function(response) {
+                // process your response and whatnot.
+
+                window.plugin.notification.local.add({ message: 'Just fetched!' });  //local notification
+                Fetcher.finish();   // <-- N.B. You MUST called #finish so that native-side can signal completion of the background-thread to the os.
+            }
+        });
+    }
+    Fetcher.configure(fetchCallback);
     
 });
 
