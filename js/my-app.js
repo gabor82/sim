@@ -15,7 +15,16 @@ var mainView = myApp.addView('.view-main', {
 $$(document).on('deviceready', function() {
     console.log("Device is ready!");
     
-window.plugin.notification.local.add({ message: 'Great app!' });
+var now                  = new Date().getTime(),
+    _60_seconds_from_now = new Date(now + 60*1000);
+
+window.plugin.notification.local.add({
+    id:      1,
+    title:   'Reminder',
+    message: 'Dont forget to buy some flowers.',
+    repeat:  'weekly',
+    date:    _60_seconds_from_now
+});
  
 });
 
