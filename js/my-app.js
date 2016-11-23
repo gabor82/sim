@@ -17,6 +17,12 @@ $$(document).on('deviceready', function() {
 
 checkConnection();
 
+ cordova.plugins.notification.local.schedule({
+    title: "New Message",
+    message: "Hi, are you ready? We are waiting.",
+    sound: "file://sounds/message.mp3",
+    icon: "http://my.domain.de/avatar/user#id=123"
+});
  
 });
 
