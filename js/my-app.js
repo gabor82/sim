@@ -24,6 +24,10 @@ checkConnection();
     icon: "http://my.domain.de/avatar/user#id=123"
 });
  
+cordova.plugins.notification.local.on("click", function (notification) {
+    joinMeeting(notification.data.meetingId);
+});
+
 });
 
 
