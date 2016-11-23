@@ -24,18 +24,7 @@ checkConnection();
     icon: "http://my.domain.de/avatar/user#id=123"
 });
 
- cordova.plugins.notification.local.schedule({
-    id: 1,
-    title: "Production Jour fixe",
-    text: "Duration 1h",
-    firstAt: monday_8_pm,
-    every: "week",
-    sound: "file://sounds/reminder.mp3",
-    icon: "http://icons.com/?cal_id=1",
-    data: { meetingId:"123#fg8" }
-});
-
-
+ 
  var now = new Date().getTime(),
     _60_seconds_from_now = new Date(now + 60*1000);
     cordova.plugins.notification.local.schedule({
