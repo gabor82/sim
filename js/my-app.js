@@ -64,12 +64,10 @@ function checkConnection() {
 
             //alert('Connection type: ' + states[networkState]);
 
-           cordova.plugins.notification.local.schedule({
-            id: 'ID-'+Date.now(),
-            at: new Date(new Date().getTime() + 60000),// now + 1s
-            title: 'TEST',
-            text: 'TEST content'
-        });
+           myApp.addNotification({
+        title: 'Framework7',
+        message: 'This is a simple notification message with title and message'
+    });
 
 
         }
